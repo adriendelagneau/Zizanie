@@ -10,6 +10,7 @@ generator client {
 
 model Profile {
   id String @id @default(cuid()) // Unique ID
+  userId        String    @unique // User's ID
 
   name          String // User's full name
   email         String    @unique // Email, should be unique for each user

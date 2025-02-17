@@ -58,13 +58,13 @@ export async function POST(req: Request) {
   if (eventType === "user.created") {
     try {
       const existingProfile = await db.profile.findUnique({
-        where: { email: evt.data.email_addresses[0]?.email_address }
+        where: { userId: id }
       });
       
       if (!existingProfile) {
         await db.profile.create({
           data: {
-            id: evt.data.id,
+            userId: evt.data.id,
             email: evt.data.email_addresses[0]?.email_address || "",
             image: evt.data.image_url || "",
             name: evt.data.first_name || "Unknown"
@@ -83,9 +83,19 @@ export async function POST(req: Request) {
   }
 
   if (eventType === "user.deleted") {
+    
     try {
-      await db.profile.delete({ where: { id: evt.data.id } });
-      return new Response("User deleted", { status: 200 });
+      const existingProfile = await db.profile.findUnique({
+        where: { id: evt.data.id }
+      });
+
+      if (existingProfile) {
+        await db.profile.delete({ where: { id: evt.data.id } });
+        return new Response("User deleted", { status: 200 });
+      } else {
+        console.log("User not found, skipping profile deletion.");
+        return new Response("User not found", { status: 404 });
+      }
     } catch (err) {
       console.log(err);
       return new Response("Error: Failed to create a user!", {
