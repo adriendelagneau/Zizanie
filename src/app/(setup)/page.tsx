@@ -5,12 +5,17 @@ import { redirect } from "next/navigation"
 
 export default async function SetupPage() {
 
-  const profile =  await currentUser()
+  const user =  await currentUser()
 
-  if (!profile?.id) {
+  if (!user?.id) {
     return redirect("/sign-in")
 }
 
+const profile=  await db.profile.findUnique({
+  where: {
+    userId: user?.id
+  }
+})
   const server = await db.server.findFirst({
     where: {
       members: {
