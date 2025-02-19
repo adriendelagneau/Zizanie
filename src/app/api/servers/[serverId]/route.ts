@@ -7,8 +7,9 @@ export async function PATCH(
     {params}: {params: Promise<{serverId: string}>}
 ) {
     try{
-        const {serverId} = await params
+        console.log("patch")
         const profile = await currentProfile()
+        const {serverId} = await params
         const { name, imageUrl} = await req.json()
 
         if(!profile) {

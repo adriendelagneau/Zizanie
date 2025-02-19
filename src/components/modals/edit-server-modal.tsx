@@ -26,16 +26,20 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import FileUpload from "@/components/file-upload";
+import { useEffect } from "react";
 
 const FormSchema = z.object({
   name: z.string().min(1, { message: "Server name is required" }),
   imageUrl: z.string().min(1, { message: "Server image is required" }),
 });
 
-export const CreateServerModal = () => {
+export const EditServerModal = () => {
   const router = useRouter();
-  const { isOpen, onClose, type } = useModal();
-  const isModalOpen = isOpen && type === "createServer";
+  const { isOpen, onClose, type, data } = useModal();
+  const isModalOpen = isOpen && type === "editServer";
+  const {server} = data
+
+
 
   const form = useForm({
     resolver: zodResolver(FormSchema),
@@ -46,7 +50,8 @@ export const CreateServerModal = () => {
 
   const onSubmit = async (values: z.infer<typeof FormSchema>) => {
     try {
-      await axios.post("/api/servers", values);
+      console.log(values)
+      await axios.patch(`/api/servers/${server?.id}`, values);
       router.refresh();
       onClose();
     } catch (err) {
@@ -58,6 +63,13 @@ export const CreateServerModal = () => {
     form.reset();
     onClose();
   };
+
+  useEffect(() => {
+    if(server){
+      form.setValue('name', server.name)
+      form.setValue('imageUrl', server.imageUrl)
+    }
+  },[server, form])
 
   return (
     <Dialog open={isModalOpen} onOpenChange={handleClose}>
@@ -113,7 +125,7 @@ export const CreateServerModal = () => {
             {/* Footer with Create Button */}
             <DialogFooter className="px-6 py-4">
               <Button type="submit" variant="primary" disabled={isLoading} className="cursor-pointer">
-                Create
+                Save
               </Button>
             </DialogFooter>
           </form>

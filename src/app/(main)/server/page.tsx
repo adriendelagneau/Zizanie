@@ -37,13 +37,9 @@ const { serverId} = await params
     }
   })
 
-  const initialChannel = server?.channels[0]
 
-  if(initialChannel?.name !== "general" ){
-    return null
-  }
 
-  return redirect(`/server/${serverId}/channels/${initialChannel?.id}`)
+  return redirect(`/server/${serverId}}`)
  
 }
 
