@@ -26,7 +26,8 @@ const NavigationItem = ({
     
 
     const handleClick = () => {
-        router.push(`/server/${id}`)
+        router.push(`/server/${id}/channels/${defaultChannelId}`)
+
     }
 
     return (

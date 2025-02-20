@@ -24,7 +24,7 @@ export const ourFileRouter = {
   messageFile: f(["image", "pdf"]) // This is the correct format
     .middleware(() => handleAuth())
     .onUploadComplete(({file}) => {
-      console.log("File uploaded successfully:", file);
+      console.log("File uploaded successfully:");
     }),
 } satisfies FileRouter;
 

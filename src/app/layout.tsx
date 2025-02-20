@@ -5,7 +5,8 @@ import "./globals.css";
 import { ClerkProvider } from '@clerk/nextjs'
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { ModalProvider } from "@/components/providers/modal-provider";
-
+import { dark, neobrutalism } from '@clerk/themes'
+import QueryProvider from "@/components/providers/query-provider";
 
 export const metadata: Metadata = {
   title: "Zizanie",
@@ -17,8 +18,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  
   return (
-    <ClerkProvider afterSignOutUrl="/">
+    <ClerkProvider 
+    appearance={{
+      baseTheme: dark,
+      signIn: { baseTheme: neobrutalism },
+    }}
+    afterSignOutUrl="/">
       <html lang="en" suppressHydrationWarning>
         <body>
           <ThemeProvider
@@ -28,7 +35,9 @@ export default function RootLayout({
             storageKey="discord-clone"
           >
                 <ModalProvider />
+                <QueryProvider>
             {children}
+            </QueryProvider>
           </ThemeProvider>
         </body>
       </html>
