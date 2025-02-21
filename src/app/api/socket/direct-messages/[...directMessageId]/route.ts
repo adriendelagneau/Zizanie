@@ -31,12 +31,12 @@ export async function DELETE(req: NextRequest, { params }: { params: Promise<{ d
                 OR: [
                     {
                         memberOne: {
-                            userId: profile.id
+                            profileId: profile.id
                         }
                     },
                     {
                         memberTwo: {
-                            userId: profile.id
+                            profileId: profile.id
                         }
                     }
                 ]
@@ -44,12 +44,12 @@ export async function DELETE(req: NextRequest, { params }: { params: Promise<{ d
             include: {
                 memberOne: {
                     include: {
-                        user: true
+                        profile: true
                     }
                 },
                 memberTwo: {
                     include: {
-                        user: true
+                        profile: true
                     }
                 }
             }
@@ -60,7 +60,7 @@ export async function DELETE(req: NextRequest, { params }: { params: Promise<{ d
             return NextResponse.json({ error: "Conversation not found" }, { status: 404 });
         }
 
-        const member = conversation.memberOne.userId === profile.id ? conversation.memberOne : conversation.memberTwo
+        const member = conversation.memberOne.profileId === profile.id ? conversation.memberOne : conversation.memberTwo
 
         if (!member) {
             return NextResponse.json({ error: "Member not found" }, { status: 404 });
@@ -75,7 +75,7 @@ export async function DELETE(req: NextRequest, { params }: { params: Promise<{ d
             include: {
                 member: {
                     include: {
-                        user: true
+                        profile: true
                     }
                 }
             }
@@ -105,7 +105,7 @@ export async function DELETE(req: NextRequest, { params }: { params: Promise<{ d
             include: {
                 member: {
                     include: {
-                        user: true
+                        profile: true
                     }
                 }
             }
@@ -146,12 +146,12 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ di
                 OR: [
                     {
                         memberOne: {
-                            userId: profile.id
+                            profileId: profile.id
                         }
                     },
                     {
                         memberTwo: {
-                            userId: profile.id
+                            profileId: profile.id
                         }
                     }
                 ]
@@ -159,12 +159,12 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ di
             include: {
                 memberOne: {
                     include: {
-                        user: true
+                        profile: true
                     }
                 },
                 memberTwo: {
                     include: {
-                        user: true
+                        profile: true
                     }
                 }
             }
@@ -174,7 +174,7 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ di
             return NextResponse.json({ error: "Conversation not found" }, { status: 404 });
         }
 
-        const member = conversation.memberOne.userId === profile.id ? conversation.memberOne : conversation.memberTwo
+        const member = conversation.memberOne.profileId === profile.id ? conversation.memberOne : conversation.memberTwo
 
         if (!member) {
             return NextResponse.json({ error: "Member not found" }, { status: 404 });
@@ -188,7 +188,7 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ di
             include: {
                 member: {
                     include: {
-                        user: true
+                        profile: true
                     }
                 }
             }
@@ -214,7 +214,7 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ di
             include: {
                 member: {
                     include: {
-                        user: true
+                        profile: true
                     }
                 }
             }

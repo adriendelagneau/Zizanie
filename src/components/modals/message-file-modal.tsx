@@ -8,7 +8,7 @@ import { useForm } from 'react-hook-form'
 import * as z from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Button } from '../ui/button'
-import { Input } from '../ui/input'
+
 import FileUpload from '../file-upload'
 import { useRouter } from 'next/navigation'
 import axios from "axios"

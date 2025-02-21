@@ -1,5 +1,5 @@
 import { socket } from "@/socket";
-import { Member, Message, User } from "@prisma/client";
+import { Member, Message, Profile } from "@prisma/client";
 import { useQueryClient } from "@tanstack/react-query";
 import { useEffect } from "react";
 
@@ -12,7 +12,7 @@ type ChatSocketProps = {
 
 type MessageWithMemberWithProfile = Message & {
   member: Member & {
-    user: User;
+    Profile: Profile;
   };
 };
 

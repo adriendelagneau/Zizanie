@@ -27,19 +27,19 @@ export async function POST(req: Request) {
                 OR: [
                     {
                         memberOne: {
-                            userId: profile.id
+                            profileId: profile.id
                         }
                     },
                     {
                         memberTwo: {
-                            userId: profile.id
+                            profileId: profile.id
                         }
                     }
                 ]
              },
              include: {
-                memberOne: { include: { user: true } },
-                memberTwo: {include: { user: true } }
+                memberOne: { include: { profile: true } },
+                memberTwo: {include: { profile: true } }
              }
       
         });
@@ -48,7 +48,7 @@ export async function POST(req: Request) {
             return NextResponse.json({ message: "Conversation not found" }, { status: 404 });
         }
 
-        const member = conversation.memberOne.userId === profile.id ? conversation.memberOne : conversation.memberTwo;
+        const member = conversation.memberOne.profileId === profile.id ? conversation.memberOne : conversation.memberTwo;
         if (!member) {
             return NextResponse.json({ message: "Member not found" }, { status: 404 });
         }
@@ -62,7 +62,7 @@ export async function POST(req: Request) {
             },
             include: {
                 member: {
-                    include: { user: true }
+                    include: { profile: true }
                 }
             }
         });
