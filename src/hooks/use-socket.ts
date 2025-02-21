@@ -6,7 +6,6 @@ import { useEffect } from "react";
 type ChatSocketProps = {
   addKey: string;
   updateKey: string;
-
   queryKey: string;
 };
 
@@ -23,6 +22,11 @@ export const useChatSocket = ({ addKey, updateKey, queryKey }: ChatSocketProps) 
     if (!socket) {
       console.error("🚨 Socket is not initialized!");
       return;
+    }
+
+    if (!socket.connected) {
+      console.log("🔌 Socket is not connected, attempting to connect...");
+      socket.connect();
     }
 
     console.log("🔌 Listening for events:", { addKey, updateKey });
@@ -46,29 +50,6 @@ export const useChatSocket = ({ addKey, updateKey, queryKey }: ChatSocketProps) 
         console.error("Error updating query data for new message:", error);
       }
     });
-    
-    // // ✅ Handle message deletions
-    // socket.on(deleteKey, (messageId: string) => {
-    //   console.log("🗑 Message deleted:tttttttt", messageId);
-
-    //   try {
-    //     queryClient.setQueryData([queryKey], (oldData: any) => {
-    //       if (!oldData || !oldData.pages || oldData.pages.length === 0) return oldData;
-
-    //       const newData = oldData.pages.map((page: any) => ({
-    //         ...page,
-    //         items: page.items.filter((item: MessageWithMemberWithProfile) => item.id !== messageId),
-    //       }));
-
-    //       return { ...oldData, pages: newData };
-    //     });
-    //   } catch (error) {
-    //     console.error("Error updating query data for deleted message:", error);
-    //   }
-    // });
-
-
-
 
     // ✅ Handle message updates
     socket.on(updateKey, (message: MessageWithMemberWithProfile) => {
@@ -91,7 +72,6 @@ export const useChatSocket = ({ addKey, updateKey, queryKey }: ChatSocketProps) 
         console.error("Error updating query data for updated message:", error);
       }
     });
-
 
     // ✅ Cleanup on unmount
     return () => {
