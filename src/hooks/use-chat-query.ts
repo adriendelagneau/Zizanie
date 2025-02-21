@@ -37,9 +37,8 @@ export const useChatQuey = ({ queryKey, apiUrl, paramKey, paramValue }: ChatQuer
         queryKey: [queryKey],
         queryFn: fetchMessages,
         getNextPageParam: (lastPage) => lastPage?.nextCursor,
-        refetchInterval: sk ? false : 5000,
+        refetchInterval: sk ? false : 50000,
         initialPageParam: undefined, // Add this property to define the starting page parameter
-
     })
 
     return {

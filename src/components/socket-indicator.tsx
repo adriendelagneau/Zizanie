@@ -10,26 +10,13 @@ const SocketIndicator = () => {
 
       useEffect(() => {
           if (socket.connected) {
-            onConnect();
-          }
-      
-          function onConnect() {
-            setIsConnected(true);
+              setIsConnected(true);
 
           }
       
-          function onDisconnect() {
-            setIsConnected(false);
-          }
+        }, [socket]);
+
       
-          socket.on("connect", onConnect);
-          socket.on("disconnect", onDisconnect);
-      
-          return () => {
-            socket.off("connect", onConnect);
-            socket.off("disconnect", onDisconnect);
-          };
-        }, []);
 
         if (!isConnected) {
             return (
