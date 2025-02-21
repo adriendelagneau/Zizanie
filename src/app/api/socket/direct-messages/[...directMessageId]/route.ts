@@ -55,7 +55,7 @@ export async function DELETE(req: NextRequest, { params }: { params: Promise<{ d
             }
         })
 
-        console.log("toto")
+
         if (!conversation) {
             return NextResponse.json({ error: "Conversation not found" }, { status: 404 });
         }

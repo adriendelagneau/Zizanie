@@ -45,7 +45,7 @@ const ChatMessages = ({ name, member, chatId, apiUrl, socketUrl, socketQuery, pa
     const bottomRef = useRef<HTMLDivElement>(null)
 
     const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status } = useChatQuey({ queryKey, apiUrl, paramKey, paramValue })
-    console.log(data)
+
     useChatSocket({ queryKey, addKey, updateKey })
     useChatScroll({
         chatRef: chatRef as React.RefObject<HTMLDivElement>,

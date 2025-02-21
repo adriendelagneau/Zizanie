@@ -35,7 +35,7 @@ const MessageFileModal = () => {
         }
     })
 
-    console.log(form.getValues("fileUrl"), "form")
+
     const handleClose = () => {
         form.reset()
         onClose()

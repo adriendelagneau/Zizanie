@@ -35,7 +35,7 @@ const MessageFileModal = () => {
         }
     })
 
-    console.log(form.getValues("fileUrl"), "form")
+
     const handleClose = () => {
         form.reset()
         onClose()
@@ -59,7 +59,7 @@ const MessageFileModal = () => {
             router.refresh()
 
         } catch (err) {
-            console.log(err)
+            (err)
         }
     }
     return (

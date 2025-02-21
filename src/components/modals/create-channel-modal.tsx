@@ -70,7 +70,7 @@ export const CreateChannelModal = () => {
             router.refresh()
             onClose()
         } catch (err) {
-            console.log(err)
+            (err)
         }
     }
 

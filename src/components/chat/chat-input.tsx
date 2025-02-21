@@ -48,7 +48,7 @@ const ChatInput = ({ apiUrl, query, name, type }: ChatInputProps) => {
     const url = qs.stringifyUrl({ url: apiUrl, query });
    const res =  await axios.post(url, values);
 
-   console.log(res)
+
    
     if (channelId) {
       const channelKey = `chat:${channelId}:messages`;

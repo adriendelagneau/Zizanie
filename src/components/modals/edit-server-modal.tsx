@@ -50,7 +50,7 @@ export const EditServerModal = () => {
 
   const onSubmit = async (values: z.infer<typeof FormSchema>) => {
     try {
-      console.log(values)
+
       await axios.patch(`/api/servers/${server?.id}`, values);
       router.refresh();
       onClose();
