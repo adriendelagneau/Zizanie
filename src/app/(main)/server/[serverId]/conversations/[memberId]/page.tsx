@@ -3,6 +3,9 @@
 // import ChatMessages from '@/components/chat/chat-messages'
 // import MediaRoom from '@/components/media-room'
 import ChatHeader from '@/components/chat/chat-header'
+import ChatInput from '@/components/chat/chat-input'
+import ChatMessages from '@/components/chat/chat-messages'
+import MediaRoom from '@/components/media-room'
 import { getOrCreateConversation } from '@/lib/conversation' 
 import { currentProfile } from '@/lib/current-profile'
 import { db } from '@/lib/db'
@@ -59,7 +62,7 @@ const MemeberIdPage = async ({ params, searchParams }: MemeberIdPageProps) => {
         serverId={serverId}
         type="conversation"
       />
-      {/* {video && (
+      {video && (
         <MediaRoom
           chatId={conversation.id}
           video={true}
@@ -70,7 +73,7 @@ const MemeberIdPage = async ({ params, searchParams }: MemeberIdPageProps) => {
         <>
           <ChatMessages
             member={currentMember}
-            name={otherMember.user.name}
+            name={otherMember.profile.name}
             chatId={conversation.id}
             type='conversation'
             apiUrl='/api/direct-messages'
@@ -82,7 +85,7 @@ const MemeberIdPage = async ({ params, searchParams }: MemeberIdPageProps) => {
             }}
           />
           <ChatInput
-            name={otherMember.user.name}
+            name={otherMember.profile.name}
             type="conversation"
             apiUrl='/api/socket/direct-messages'
             query={{
@@ -90,7 +93,7 @@ const MemeberIdPage = async ({ params, searchParams }: MemeberIdPageProps) => {
             }}
           />
         </>
-      )} */}
+      )}
     </div>
   )
 }

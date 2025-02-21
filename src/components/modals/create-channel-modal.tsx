@@ -15,6 +15,7 @@ import axios from "axios"
 import { useModal } from '@/hooks/use-modal-store'
 import { ChannelType } from '@prisma/client'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select'
+import { Loader2Icon } from 'lucide-react'
 
 
 const formSchema = z.object({
@@ -151,11 +152,14 @@ export const CreateChannelModal = () => {
                             />
 
                         </div>
-                        <DialogFooter className=' px-6 py-4'>
-                            <Button variant={"secondary"} disabled={isLoading}>Create</Button>
-                        </DialogFooter>
+                        <Button
+                                variant={"secondary"}
+                                disabled={isLoading}
+                                className={`w-24 mx-auto text-center`}
+                            >
+                                {isLoading ? <Loader2Icon className="h-7 w-7 animate-spin" /> : "Create"}
+                            </Button>
                     </form>
-                    {/* <Button variant={"secondary"} type='submit'>submit</Button> */}
                 </Form>
             </DialogContent>
 
