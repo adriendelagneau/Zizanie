@@ -8,7 +8,7 @@ import { ScrollArea } from '../ui/scroll-area'
 import NavigationItem from './navigation-item'
 import { ModeToggle } from '../mode-toggle'
 import { UserButton } from '@clerk/nextjs'
-import Socket from '../Socket'
+
 
 
 
@@ -62,7 +62,7 @@ const NavigationSidebar = async () => {
         
              <UserButton/>
             </div>
-            <Socket/>
+          
         </div>
     )
 }
