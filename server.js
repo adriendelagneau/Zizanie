@@ -28,7 +28,7 @@ app.prepare().then(() => {
 
       if (newMessageMatch) {
         const chatId = newMessageMatch[1];
-        console.log(`📨 New message in chat ${chatId}:`, message);
+       // console.log(`📨 New message in chat ${chatId}:`, message);
 
         // Emit the message to everyone in the chat room
         io.emit(`chat:${chatId}:newMessages`, message);
@@ -36,7 +36,7 @@ app.prepare().then(() => {
 
       if (updateMessageMatch) {
         const chatId = updateMessageMatch[1];
-        console.log(`✏️ Message updated in chat ${chatId}:`, message);
+        //console.log(`✏️ Message updated in chat ${chatId}:`, message);
 
         // Emit the updated message to all clients in the chat room
         io.emit(`chat:${chatId}:messages:update`, message);
@@ -44,7 +44,7 @@ app.prepare().then(() => {
 
       if (deleteMessageMatch) {
         const chatId = deleteMessageMatch[1];
-        console.log(`🗑️ Message deleted in chat ${chatId}:`, message);
+        //console.log(`🗑️ Message deleted in chat ${chatId}:`, message);
 
         // Emit the deletion event to all clients in the chat room
         io.emit(`chat:${chatId}:messages:update`, message);
