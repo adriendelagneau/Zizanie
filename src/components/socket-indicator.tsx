@@ -14,7 +14,7 @@ const SocketIndicator = () => {
 
           }
       
-        }, [socket]);
+        }, [socket.connected]);
 
       
 
