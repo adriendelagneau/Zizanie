@@ -3,7 +3,7 @@ import React from 'react'
 import MobileToggle from '../mobile-toggle'
 import UserAvatar from '../user-avatar'
 import ChatVideoButton from './chat-video-button'
-import Socket from '../Socket'
+import SocketIndicator from '../Socket'
 
 
 
@@ -35,7 +35,7 @@ const ChatHeader = ({serverId, name, type, imageUrl}: ChatHeaderProps) => {
       {type === "conversation" && (
         <ChatVideoButton/>
       )}
-             <Socket/>
+             <SocketIndicator/>
       </div>
     </div>
   )

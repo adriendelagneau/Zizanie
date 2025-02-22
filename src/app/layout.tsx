@@ -7,7 +7,7 @@ import { ThemeProvider } from "@/components/providers/theme-provider";
 import { ModalProvider } from "@/components/providers/modal-provider";
 import { dark, neobrutalism } from '@clerk/themes'
 import QueryProvider from "@/components/providers/query-provider";
-import Socket from "@/components/Socket";
+
 
 export const metadata: Metadata = {
   title: "Zizanie",
@@ -37,7 +37,7 @@ export default function RootLayout({
           >
                 <ModalProvider />
                 <QueryProvider>
-                <Socket/>
+            
             {children}
             </QueryProvider>
           </ThemeProvider>
