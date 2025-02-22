@@ -7,14 +7,14 @@ import { Badge } from './ui/badge';
 
 const SocketIndicator = () => {
       const [isConnected, setIsConnected] = useState(false);
+      let toto = socket.connected
 
       useEffect(() => {
-          if (socket.connected) {
+          if (toto) {
               setIsConnected(true);
-
           }
       
-        }, [socket.connected]);
+        }, [toto]);
 
       
 

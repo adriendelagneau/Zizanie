@@ -15,7 +15,7 @@ interface ChatQueryProps {
 export const useChatQuey = ({ queryKey, apiUrl, paramKey, paramValue }: ChatQueryProps) => {
 
    const sk = socket.connected
-   console.log(sk, 'connected sk')
+  
 
     const fetchMessages = async ({ pageParam = undefined }) => {
 
@@ -36,7 +36,7 @@ export const useChatQuey = ({ queryKey, apiUrl, paramKey, paramValue }: ChatQuer
         queryKey: [queryKey],
         queryFn: fetchMessages,
         getNextPageParam: (lastPage) => lastPage?.nextCursor,
-        refetchInterval: sk ? false : 10000,
+        refetchInterval: sk ? false : 500000,
         initialPageParam: undefined, // Add this property to define the starting page parameter
     })
 
